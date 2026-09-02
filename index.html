@@ -54,7 +54,6 @@
       --bg-surface: #1a1f2b;
       --border-color: #2a3045;
       --border-light: #3a4055;
-      /* Teal Accent */
       --accent: #00b8a9;
       --accent-hover: #00d4c0;
       --accent-dark: #009688;
@@ -80,7 +79,6 @@
       --bg-surface: #f4f6fb;
       --border-color: #c8cdd9;
       --border-light: #b0b8c8;
-      /* Teal Accent (light) */
       --accent: #00a396;
       --accent-hover: #00b8a9;
       --accent-dark: #00897b;
@@ -101,9 +99,7 @@
     /* ========================================== */
     /* RESET & BASE                               */
     /* ========================================== */
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -130,20 +126,10 @@
     /* ========================================== */
     /* SCROLLBAR                                  */
     /* ========================================== */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-primary);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--border-color);
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent);
-    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     
     /* ========================================== */
     /* LOGIN PAGE                                 */
@@ -273,7 +259,7 @@
     }
     
     /* ========================================== */
-    /* BUTTONS — Teal, Pill, Glow, Lift, Ripple  */
+    /* BUTTONS                                    */
     /* ========================================== */
     .btn-primary {
       width: 100%;
@@ -298,22 +284,7 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(0, 184, 169, 0.5);
     }
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 30px;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-    .btn-primary:hover::after {
-      opacity: 1;
-    }
+    .btn-primary:active { transform: translateY(0); }
     
     .btn-primary-solid {
       background: var(--accent);
@@ -337,19 +308,6 @@
       background: var(--accent-hover);
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(0, 184, 169, 0.5);
-    }
-    .btn-primary-solid::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 30px;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-    .btn-primary-solid:hover::after {
-      opacity: 1;
     }
     
     .btn-ghost {
@@ -439,10 +397,7 @@
       font-family: var(--font-family);
       transition: var(--transition);
     }
-    
-    .auth-toggle:hover {
-      color: var(--text-primary);
-    }
+    .auth-toggle:hover { color: var(--text-primary); }
     
     .forgot-password {
       background: none;
@@ -458,13 +413,10 @@
       font-family: var(--font-family);
       transition: var(--transition);
     }
-    
-    .forgot-password:hover {
-      color: var(--accent);
-    }
+    .forgot-password:hover { color: var(--accent); }
     
     /* ========================================== */
-    /* THEME TOGGLE - TOGGLE SWITCH STYLE        */
+    /* THEME TOGGLE                               */
     /* ========================================== */
     .theme-toggle-wrapper {
       display: flex;
@@ -477,7 +429,6 @@
       box-shadow: 0 0 20px rgba(0, 184, 169, 0.25);
       transition: all 0.3s ease;
       cursor: pointer;
-      -webkit-user-select: none;
       user-select: none;
     }
     .theme-toggle-wrapper:hover {
@@ -517,7 +468,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
-    /* Dark mode state */
     [data-theme="dark"] .theme-toggle-switch {
       background: var(--accent);
     }
@@ -525,8 +475,6 @@
       left: 25px;
       background: #ffffff;
     }
-    
-    /* Light mode state */
     [data-theme="light"] .theme-toggle-switch {
       background: #c8cdd9;
     }
@@ -536,7 +484,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     
-    /* Icon inside toggle */
     .theme-toggle-wrapper .toggle-icon {
       font-size: 20px;
       line-height: 1;
@@ -545,13 +492,8 @@
     /* ========================================== */
     /* APP LAYOUT                                 */
     /* ========================================== */
-    #app {
-      display: none;
-    }
-    
-    #app.visible {
-      display: block;
-    }
+    #app { display: none; }
+    #app.visible { display: block; }
     
     /* ========================================== */
     /* HEADER                                     */
@@ -632,96 +574,8 @@
       font-weight: 600;
     }
     
-    .role-badge {
-      font-size: 9px;
-      padding: 2px 10px;
-      border-radius: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      font-family: var(--font-mono);
-      margin-left: 4px;
-    }
-    
-    .role-badge.owner {
-      background: rgba(0, 184, 169, 0.2);
-      color: var(--accent);
-      border: 1px solid var(--accent);
-    }
-    .role-badge.manager {
-      background: rgba(52, 152, 219, 0.2);
-      color: var(--blue);
-      border: 1px solid var(--blue);
-    }
-    .role-badge.employee {
-      background: rgba(46, 204, 113, 0.2);
-      color: var(--green);
-      border: 1px solid var(--green);
-    }
-    
     /* ========================================== */
-    /* BUTTONS (legacy overrides)                */
-    /* ========================================== */
-    .btn {
-      padding: 8px 18px;
-      border-radius: 30px;
-      border: none;
-      font-size: 13px;
-      font-weight: 500;
-      font-family: var(--font-family);
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 184, 169, 0.2);
-    }
-    .btn-primary-solid {
-      background: var(--accent);
-      color: #000000;
-      box-shadow: 0 4px 14px rgba(0, 184, 169, 0.3);
-    }
-    .btn-primary-solid:hover {
-      background: var(--accent-hover);
-      box-shadow: 0 8px 28px rgba(0, 184, 169, 0.5);
-    }
-    .btn-ghost {
-      background: var(--bg-card);
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
-    }
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      background: var(--bg-surface);
-    }
-    .btn-danger {
-      background: var(--red);
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(231, 76, 60, 0.25);
-    }
-    .btn-danger:hover {
-      box-shadow: 0 8px 28px rgba(231, 76, 60, 0.4);
-      filter: brightness(1.1);
-    }
-    .btn-success {
-      background: var(--green);
-      color: #000000;
-      box-shadow: 0 4px 14px rgba(46, 204, 113, 0.25);
-    }
-    .btn-success:hover {
-      box-shadow: 0 8px 28px rgba(46, 204, 113, 0.4);
-    }
-    .btn-sm {
-      padding: 6px 16px;
-      font-size: 11px;
-    }
-    
-    /* ========================================== */
-    /* NAVIGATION - ROUNDED TABS                 */
+    /* NAVIGATION                                 */
     /* ========================================== */
     .navbar {
       background: var(--bg-secondary);
@@ -736,9 +590,7 @@
       flex-wrap: nowrap;
     }
     
-    .navbar::-webkit-scrollbar {
-      display: none;
-    }
+    .navbar::-webkit-scrollbar { display: none; }
     
     .nav-tab {
       padding: 8px 18px;
@@ -775,10 +627,7 @@
       display: none;
       padding: 16px 20px 32px;
     }
-    
-    .page.active {
-      display: block;
-    }
+    .page.active { display: block; }
     
     .page-header {
       display: flex;
@@ -795,7 +644,7 @@
     }
     
     /* ========================================== */
-    /* SEARCH INPUT - consistent across pages    */
+    /* SEARCH INPUT                               */
     /* ========================================== */
     .search-input {
       width: 100%;
@@ -892,7 +741,6 @@
       align-items: start;
     }
     
-    /* Product list */
     .product-search {
       padding: 10px;
     }
@@ -929,7 +777,6 @@
       cursor: pointer;
       transition: var(--transition);
     }
-    
     .product-item:hover {
       background: rgba(0, 184, 169, 0.06);
     }
@@ -938,12 +785,10 @@
       font-size: 14px;
       font-weight: 500;
     }
-    
     .product-stock {
       font-size: 11px;
       color: var(--text-muted);
     }
-    
     .product-price {
       font-family: var(--font-mono);
       font-size: 14px;
@@ -969,7 +814,6 @@
       font-size: 13px;
       font-weight: 500;
     }
-    
     .cart-item-sub {
       font-size: 11px;
       color: var(--text-muted);
@@ -997,7 +841,6 @@
       transition: var(--transition);
       font-family: var(--font-family);
     }
-    
     .qty-btn:hover {
       border-color: var(--accent);
       color: var(--accent);
@@ -1058,7 +901,6 @@
       transition: var(--transition);
       font-family: var(--font-family);
     }
-    
     .payment-btn:hover,
     .payment-btn.active {
       border-color: var(--accent);
@@ -1126,26 +968,11 @@
       font-family: var(--font-mono);
     }
     
-    .pill-green {
-      background: rgba(46, 204, 113, 0.12);
-      color: var(--green);
-    }
-    .pill-red {
-      background: rgba(231, 76, 60, 0.12);
-      color: var(--red);
-    }
-    .pill-yellow {
-      background: rgba(243, 156, 18, 0.12);
-      color: var(--yellow);
-    }
-    .pill-blue {
-      background: rgba(52, 152, 219, 0.12);
-      color: var(--blue);
-    }
-    .pill-purple {
-      background: rgba(155, 89, 182, 0.12);
-      color: var(--purple);
-    }
+    .pill-green { background: rgba(46, 204, 113, 0.12); color: var(--green); }
+    .pill-red { background: rgba(231, 76, 60, 0.12); color: var(--red); }
+    .pill-yellow { background: rgba(243, 156, 18, 0.12); color: var(--yellow); }
+    .pill-blue { background: rgba(52, 152, 219, 0.12); color: var(--blue); }
+    .pill-purple { background: rgba(155, 89, 182, 0.12); color: var(--purple); }
     
     /* ========================================== */
     /* MODAL                                      */
@@ -1163,10 +990,7 @@
       padding: 20px;
       transition: background 0.3s;
     }
-    
-    .overlay.open {
-      display: flex;
-    }
+    .overlay.open { display: flex; }
     
     .modal {
       background: var(--bg-secondary);
@@ -1182,14 +1006,8 @@
     }
     
     @keyframes modalIn {
-      from {
-        transform: translateY(14px);
-        opacity: 0;
-      }
-      to {
-        transform: none;
-        opacity: 1;
-      }
+      from { transform: translateY(14px); opacity: 0; }
+      to { transform: none; opacity: 1; }
     }
     
     .modal-header {
@@ -1199,16 +1017,12 @@
       justify-content: space-between;
       align-items: center;
     }
-    
     .modal-header h3 {
       font-size: 17px;
       font-weight: 600;
     }
     
-    .modal-body {
-      padding: 18px 22px;
-    }
-    
+    .modal-body { padding: 18px 22px; }
     .modal-footer {
       padding: 14px 22px;
       border-top: 1px solid var(--border-color);
@@ -1226,10 +1040,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    
-    .form-grid .full-width {
-      grid-column: 1 / -1;
-    }
+    .form-grid .full-width { grid-column: 1 / -1; }
     
     .form-control {
       display: flex;
@@ -1258,16 +1069,12 @@
       width: 100%;
       transition: var(--transition);
     }
-    
     .form-control input:focus,
     .form-control select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.15);
     }
-    
-    .form-control select option {
-      background: var(--bg-card);
-    }
+    .form-control select option { background: var(--bg-card); }
     
     /* ========================================== */
     /* TOAST NOTIFICATIONS                        */
@@ -1299,25 +1106,13 @@
       transition: background 0.3s, border-color 0.3s, color 0.3s;
     }
     
-    .toast-success {
-      border-left: 4px solid var(--green);
-    }
-    .toast-error {
-      border-left: 4px solid var(--red);
-    }
-    .toast-info {
-      border-left: 4px solid var(--accent);
-    }
+    .toast-success { border-left: 4px solid var(--green); }
+    .toast-error { border-left: 4px solid var(--red); }
+    .toast-info { border-left: 4px solid var(--accent); }
     
     @keyframes toastIn {
-      from {
-        transform: translateX(18px);
-        opacity: 0;
-      }
-      to {
-        transform: none;
-        opacity: 1;
-      }
+      from { transform: translateX(18px); opacity: 0; }
+      to { transform: none; opacity: 1; }
     }
     
     /* ========================================== */
@@ -1351,17 +1146,14 @@
       align-items: center;
       gap: 12px;
     }
-    
     .employee-card:hover {
       border-color: var(--accent);
       background: rgba(0, 184, 169, 0.05);
     }
-    
     .employee-card.active {
       border-color: var(--accent);
       background: rgba(0, 184, 169, 0.1);
     }
-    
     .employee-card .status-dot {
       width: 10px;
       height: 10px;
@@ -1369,24 +1161,16 @@
       display: inline-block;
       flex-shrink: 0;
     }
-    
-    .employee-card .status-dot.online {
-      background: var(--green);
-    }
-    .employee-card .status-dot.offline {
-      background: var(--red);
-    }
-    
+    .employee-card .status-dot.online { background: var(--green); }
+    .employee-card .status-dot.offline { background: var(--red); }
     .employee-card .emp-name {
       font-weight: 600;
       font-size: 14px;
     }
-    
     .employee-card .emp-role {
       font-size: 11px;
       color: var(--text-muted);
     }
-    
     .employee-card .emp-badge {
       background: var(--accent);
       color: #000000;
@@ -1419,365 +1203,107 @@
     /* RESPONSIVE                                 */
     /* ========================================== */
     @media (max-width: 1024px) {
-      .pos-grid {
-        grid-template-columns: 1fr 300px;
-      }
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      #employee-status {
-        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      }
+      .pos-grid { grid-template-columns: 1fr 300px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      #employee-status { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
     }
     
     @media (max-width: 768px) {
-      .pos-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-      .stats-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .stat-card {
-        padding: 10px 14px;
-      }
-      .stat-value {
-        font-size: 16px;
-      }
-      
-      header {
-        padding: 8px 12px;
-      }
-      .header-title {
-        font-size: 15px;
-      }
-      .nav-tab {
-        font-size: 12px;
-        padding: 6px 14px;
-      }
-      .navbar {
-        padding: 6px 10px;
-        gap: 4px;
-      }
-      .page {
-        padding: 10px 12px 24px;
-      }
-      
-      .login-card {
-        padding: 28px 20px 24px;
-      }
-      .login-brand h1 {
-        font-size: 20px;
-      }
-      
-      .cart-items {
-        max-height: 220px;
-      }
-      .product-list {
-        max-height: 280px;
-      }
-      
-      .modal {
-        max-width: 95%;
-        margin: 10px;
-      }
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-      .form-grid .full-width {
-        grid-column: 1;
-      }
-      
-      .page-header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-      }
-      .page-header .btn {
-        justify-content: center;
-      }
-      
-      .payment-methods {
-        grid-template-columns: 1fr 1fr;
-      }
-      
-      table {
-        font-size: 12px;
-        min-width: 600px;
-      }
-      th,
-      td {
-        padding: 6px 10px;
-      }
-      
-      #employee-status {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .employee-card {
-        padding: 8px 12px;
-      }
-      .employee-card .emp-name {
-        font-size: 13px;
-      }
-      
-      .theme-toggle-wrapper {
-        padding: 4px 12px 4px 10px;
-        gap: 8px;
-      }
-      .theme-toggle-wrapper .toggle-label {
-        font-size: 11px;
-      }
-      .theme-toggle-switch {
-        width: 40px;
-        height: 22px;
-      }
-      .theme-toggle-switch .toggle-slider {
-        width: 18px;
-        height: 18px;
-        top: 2px;
-        left: 2px;
-      }
-      [data-theme="dark"] .theme-toggle-switch .toggle-slider {
-        left: 20px;
-      }
-      .theme-toggle-wrapper .toggle-icon {
-        font-size: 16px;
-      }
-      .search-input {
-        max-width: 100%;
-      }
+      .pos-grid { grid-template-columns: 1fr; gap: 14px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .stat-card { padding: 10px 14px; }
+      .stat-value { font-size: 16px; }
+      header { padding: 8px 12px; }
+      .header-title { font-size: 15px; }
+      .nav-tab { font-size: 12px; padding: 6px 14px; }
+      .navbar { padding: 6px 10px; gap: 4px; }
+      .page { padding: 10px 12px 24px; }
+      .login-card { padding: 28px 20px 24px; }
+      .login-brand h1 { font-size: 20px; }
+      .cart-items { max-height: 220px; }
+      .product-list { max-height: 280px; }
+      .modal { max-width: 95%; margin: 10px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full-width { grid-column: 1; }
+      .page-header { flex-direction: column; align-items: stretch; gap: 6px; }
+      .payment-methods { grid-template-columns: 1fr 1fr; }
+      table { font-size: 12px; min-width: 600px; }
+      th, td { padding: 6px 10px; }
+      #employee-status { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .employee-card { padding: 8px 12px; }
+      .employee-card .emp-name { font-size: 13px; }
+      .theme-toggle-wrapper { padding: 4px 12px 4px 10px; gap: 8px; }
+      .theme-toggle-wrapper .toggle-label { font-size: 11px; }
+      .theme-toggle-switch { width: 40px; height: 22px; }
+      .theme-toggle-switch .toggle-slider { width: 18px; height: 18px; top: 2px; left: 2px; }
+      [data-theme="dark"] .theme-toggle-switch .toggle-slider { left: 20px; }
+      .theme-toggle-wrapper .toggle-icon { font-size: 16px; }
+      .search-input { max-width: 100%; }
     }
     
     @media (max-width: 480px) {
-      .stats-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-      }
-      .stat-card {
-        padding: 8px 12px;
-      }
-      .stat-value {
-        font-size: 14px;
-      }
-      .stat-label {
-        font-size: 9px;
-      }
-      
-      header {
-        padding: 6px 10px;
-      }
-      .header-title {
-        font-size: 13px;
-      }
-      .header-logo {
-        width: 28px;
-        height: 28px;
-        font-size: 11px;
-      }
-      .header-sub {
-        display: none;
-      }
-      .user-chip {
-        font-size: 11px;
-        padding: 2px 8px 2px 2px;
-      }
-      .user-chip .avatar {
-        width: 20px;
-        height: 20px;
-        font-size: 9px;
-      }
-      
-      .nav-tab {
-        font-size: 11px;
-        padding: 5px 12px;
-      }
-      .navbar {
-        padding: 4px 8px;
-        gap: 3px;
-      }
-      .page {
-        padding: 8px 10px 20px;
-      }
-      .page-title {
-        font-size: 16px;
-      }
-      
-      .product-item {
-        padding: 8px 12px;
-      }
-      .product-name {
-        font-size: 13px;
-      }
-      .product-price {
-        font-size: 13px;
-      }
-      
-      .cart-item {
-        padding: 6px 10px;
-      }
-      .cart-item-name {
-        font-size: 12px;
-      }
-      .qty-btn {
-        width: 22px;
-        height: 22px;
-        font-size: 12px;
-      }
-      .qty-number {
-        font-size: 12px;
-        min-width: 20px;
-      }
-      
-      .cart-footer {
-        padding: 10px 12px;
-      }
-      .cart-row {
-        font-size: 13px;
-      }
-      .cart-row.total {
-        font-size: 16px;
-      }
-      .payment-btn {
-        font-size: 11px;
-        padding: 6px;
-      }
-      
-      .panel-header {
-        font-size: 10px;
-        padding: 6px 12px;
-      }
-      .panel-body {
-        padding: 10px 12px;
-      }
-      
-      table {
-        font-size: 11px;
-        min-width: 480px;
-      }
-      th,
-      td {
-        padding: 5px 8px;
-      }
-      
-      #employee-status {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-      .employee-card {
-        padding: 6px 10px;
-      }
-      .employee-card .emp-name {
-        font-size: 12px;
-      }
-      .employee-card .emp-badge {
-        font-size: 9px;
-        padding: 1px 8px;
-      }
-      
-      .login-card {
-        padding: 20px 16px 18px;
-      }
-      .login-brand .logo {
-        width: 48px;
-        height: 48px;
-        font-size: 20px;
-      }
-      .login-brand h1 {
-        font-size: 18px;
-      }
-      .login-brand p {
-        font-size: 10px;
-      }
-      
-      .form-group .input-field {
-        font-size: 14px;
-        padding: 10px 14px;
-      }
-      .btn-primary {
-        font-size: 14px;
-        padding: 12px;
-      }
-      
-      .modal {
-        padding: 0;
-      }
-      .modal-header {
-        padding: 10px 16px;
-      }
-      .modal-header h3 {
-        font-size: 15px;
-      }
-      .modal-body {
-        padding: 10px 16px;
-      }
-      .modal-footer {
-        padding: 10px 16px;
-      }
-      
-      .receipt {
-        font-size: 12px;
-        padding: 12px;
-      }
-      
-      #install-btn {
-        bottom: 60px;
-        right: 10px;
-        font-size: 11px;
-        padding: 4px 10px;
-      }
-      
-      .theme-toggle-wrapper {
-        padding: 3px 8px 3px 6px;
-        gap: 6px;
-        border-width: 1.5px;
-      }
-      .theme-toggle-wrapper .toggle-label {
-        font-size: 10px;
-      }
-      .theme-toggle-switch {
-        width: 34px;
-        height: 20px;
-      }
-      .theme-toggle-switch .toggle-slider {
-        width: 16px;
-        height: 16px;
-        top: 2px;
-        left: 2px;
-      }
-      [data-theme="dark"] .theme-toggle-switch .toggle-slider {
-        left: 16px;
-      }
-      .theme-toggle-wrapper .toggle-icon {
-        font-size: 14px;
-      }
-      .search-input {
-        max-width: 100%;
-        font-size: 13px;
-        padding: 8px 12px;
-      }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+      .stat-card { padding: 8px 12px; }
+      .stat-value { font-size: 14px; }
+      .stat-label { font-size: 9px; }
+      header { padding: 6px 10px; }
+      .header-title { font-size: 13px; }
+      .header-logo { width: 28px; height: 28px; font-size: 11px; }
+      .header-sub { display: none; }
+      .user-chip { font-size: 11px; padding: 2px 8px 2px 2px; }
+      .user-chip .avatar { width: 20px; height: 20px; font-size: 9px; }
+      .nav-tab { font-size: 11px; padding: 5px 12px; }
+      .navbar { padding: 4px 8px; gap: 3px; }
+      .page { padding: 8px 10px 20px; }
+      .page-title { font-size: 16px; }
+      .product-item { padding: 8px 12px; }
+      .product-name { font-size: 13px; }
+      .product-price { font-size: 13px; }
+      .cart-item { padding: 6px 10px; }
+      .cart-item-name { font-size: 12px; }
+      .qty-btn { width: 22px; height: 22px; font-size: 12px; }
+      .qty-number { font-size: 12px; min-width: 20px; }
+      .cart-footer { padding: 10px 12px; }
+      .cart-row { font-size: 13px; }
+      .cart-row.total { font-size: 16px; }
+      .payment-btn { font-size: 11px; padding: 6px; }
+      .panel-header { font-size: 10px; padding: 6px 12px; }
+      .panel-body { padding: 10px 12px; }
+      table { font-size: 11px; min-width: 480px; }
+      th, td { padding: 5px 8px; }
+      #employee-status { grid-template-columns: 1fr; gap: 6px; }
+      .employee-card { padding: 6px 10px; }
+      .employee-card .emp-name { font-size: 12px; }
+      .employee-card .emp-badge { font-size: 9px; padding: 1px 8px; }
+      .login-card { padding: 20px 16px 18px; }
+      .login-brand .logo { width: 48px; height: 48px; font-size: 20px; }
+      .login-brand h1 { font-size: 18px; }
+      .login-brand p { font-size: 10px; }
+      .form-group .input-field { font-size: 14px; padding: 10px 14px; }
+      .btn-primary { font-size: 14px; padding: 12px; }
+      .modal { padding: 0; }
+      .modal-header { padding: 10px 16px; }
+      .modal-header h3 { font-size: 15px; }
+      .modal-body { padding: 10px 16px; }
+      .modal-footer { padding: 10px 16px; }
+      .receipt { font-size: 12px; padding: 12px; }
+      #install-btn { bottom: 60px; right: 10px; font-size: 11px; padding: 4px 10px; }
+      .theme-toggle-wrapper { padding: 3px 8px 3px 6px; gap: 6px; border-width: 1.5px; }
+      .theme-toggle-wrapper .toggle-label { font-size: 10px; }
+      .theme-toggle-switch { width: 34px; height: 20px; }
+      .theme-toggle-switch .toggle-slider { width: 16px; height: 16px; top: 2px; left: 2px; }
+      [data-theme="dark"] .theme-toggle-switch .toggle-slider { left: 16px; }
+      .theme-toggle-wrapper .toggle-icon { font-size: 14px; }
+      .search-input { max-width: 100%; font-size: 13px; padding: 8px 12px; }
     }
     
     @media (max-height: 600px) and (orientation: landscape) {
-      .pos-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .product-list {
-        max-height: 180px;
-      }
-      .cart-items {
-        max-height: 140px;
-      }
-      .stats-grid {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-      }
-      header {
-        padding: 4px 10px;
-      }
-      .page {
-        padding: 6px 12px 14px;
-      }
+      .pos-grid { grid-template-columns: 1fr 1fr; }
+      .product-list { max-height: 180px; }
+      .cart-items { max-height: 140px; }
+      .stats-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+      header { padding: 4px 10px; }
+      .page { padding: 6px 12px 14px; }
     }
   </style>
 </head>
@@ -1787,8 +1313,6 @@
   <!-- LOGIN SCREEN                               -->
   <!-- ========================================== -->
   <div id="loginScreen">
-    <!-- Theme toggle removed from login page -->
-    
     <div class="login-card">
       <div class="login-brand">
         <div class="logo">BT</div>
@@ -1800,7 +1324,6 @@
         <span>Sign In</span>
       </div>
 
-      <!-- Name field (only for registration) -->
       <div class="form-group" id="nameField" style="display:none;">
         <label for="loginName">Full Name</label>
         <input type="text" id="loginName" class="input-field" placeholder="Enter your full name" autocomplete="off" />
@@ -1829,7 +1352,6 @@
   <!-- APP                                        -->
   <!-- ========================================== -->
   <div id="app">
-    <!-- Header -->
     <header>
       <div class="header-left">
         <div class="header-logo">BT</div>
@@ -1839,7 +1361,6 @@
         </div>
       </div>
       <div class="header-right">
-        <!-- Theme toggle - Toggle Switch Style -->
         <div class="theme-toggle-wrapper" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle theme">
           <span class="toggle-icon" id="themeIcon">🌙</span>
           <span class="toggle-label" id="themeLabel"></span>
@@ -1849,7 +1370,7 @@
         </div>
         
         <div class="user-chip" id="userChip">
-          <div class="avatar" id="userAvatar">👤</div>
+          <div class="avatar" id="userAvatar">🧑‍💼</div>
           <span id="userName">User</span>
           <span style="color:var(--text-muted);font-size:11px;font-family:var(--font-mono);" id="userRole">EMPLOYEE</span>
         </div>
@@ -1858,7 +1379,6 @@
       </div>
     </header>
 
-    <!-- Navigation - Rounded tabs -->
     <div class="navbar" id="navbar">
       <button class="nav-tab active" data-page="pos" onclick="goToPage('pos', this)">Sell</button>
       <button class="nav-tab" data-page="stock" onclick="goToPage('stock', this)">Stock</button>
@@ -1923,7 +1443,6 @@
         <div class="page-title">Stock</div>
         <div id="stockButtons"></div>
       </div>
-      <!-- Search input now uses the same styling as the Sell page -->
       <div style="margin-bottom:10px;">
         <input type="text" id="stockSearch" class="search-input" placeholder="Search products..." oninput="renderStock()" />
       </div>
@@ -1957,15 +1476,7 @@
       <div class="table-wrapper">
         <table>
           <thead>
-            <tr>
-              <th>Receipt</th>
-              <th>Time</th>
-              <th>Customer</th>
-              <th>Items</th>
-              <th>Total</th>
-              <th>Payment</th>
-              <th></th>
-            </tr>
+            <tr><th>Receipt</th><th>Time</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th></th></tr>
           </thead>
           <tbody id="mySalesBody"></tbody>
         </table>
@@ -1994,16 +1505,7 @@
       <div class="table-wrapper">
         <table>
           <thead>
-            <tr>
-              <th>Receipt</th>
-              <th>Time</th>
-              <th>Staff</th>
-              <th>Customer</th>
-              <th>Items</th>
-              <th>Total</th>
-              <th>Payment</th>
-              <th></th>
-            </tr>
+            <tr><th>Receipt</th><th>Time</th><th>Staff</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th></th></tr>
           </thead>
           <tbody id="allSalesBody"></tbody>
         </table>
@@ -2019,15 +1521,7 @@
       <div class="table-wrapper">
         <table>
           <thead>
-            <tr>
-              <th>Name</th>
-              <th>Role</th>
-              <th>Email</th>
-              <th>Sales</th>
-              <th>Revenue</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
+            <tr><th>Name</th><th>Role</th><th>Email</th><th>Sales</th><th>Revenue</th><th>Status</th><th>Actions</th></tr>
           </thead>
           <tbody id="usersBody"></tbody>
         </table>
@@ -2064,9 +1558,7 @@
           <span class="pill pill-purple" style="font-size:11px;">Sales: <span id="liveSaleCount">0</span></span>
         </div>
       </div>
-
       <div class="stats-grid" id="liveStats"></div>
-
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;">
         <div>
           <button class="btn-primary-solid btn-sm" onclick="filterEmployee('all')" id="filterAllBtn" style="border:2px solid var(--accent);">
@@ -2078,12 +1570,10 @@
         </div>
         <span style="color:var(--text-muted);font-size:11px;">Click an employee to filter</span>
       </div>
-
       <div class="panel" style="margin-bottom:12px;">
         <div class="panel-header">Employee Status <span style="font-size:10px;color:var(--text-muted);font-weight:400;">(click to filter)</span></div>
         <div id="employeeStatus"></div>
       </div>
-
       <div class="panel">
         <div class="panel-header">Live Sales Feed</div>
         <div id="liveFeed" style="max-height:380px;overflow-y:auto;padding:10px;">
@@ -2106,9 +1596,7 @@
           <button class="btn-ghost btn-sm" onclick="refreshAnalytics()">Refresh</button>
         </div>
       </div>
-
       <div class="stats-grid" id="analyticsStats"></div>
-
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
         <div class="panel">
           <div class="panel-header">Sales Trend</div>
@@ -2123,7 +1611,6 @@
           </div>
         </div>
       </div>
-
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
         <div class="panel">
           <div class="panel-header">Peak Hours</div>
@@ -2134,7 +1621,6 @@
           <div id="topProductsAnalytics" style="padding:12px;"></div>
         </div>
       </div>
-
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
         <div class="panel">
           <div class="panel-header">Employee Performance</div>
@@ -2333,7 +1819,6 @@
   <!-- FIREBASE INTEGRATION                       -->
   <!-- ========================================== -->
 
-  <!-- Firebase Import Map -->
   <script type="importmap">
   {
     "imports": {
@@ -2344,7 +1829,6 @@
   }
   </script>
 
-  <!-- Firebase Initialization -->
   <script type="module">
   import { initializeApp } from 'firebase/app';
   import {
@@ -2535,7 +2019,7 @@
   <!-- ========================================== -->
   <script>
     // ============================================
-    // THEME TOGGLE - No notification
+    // THEME TOGGLE
     // ============================================
     function toggleTheme() {
       const html = document.documentElement;
@@ -2543,7 +2027,6 @@
       const next = current === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       
-      // Update theme toggle button
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       
@@ -2555,11 +2038,9 @@
         if (label) label.textContent = '';
       }
       
-      // Re-render analytics charts with new theme colors
       if (document.getElementById('page-analytics').classList.contains('active')) {
         renderAnalytics();
       }
-      // No toast notification for theme switching
     }
 
     // ============================================
@@ -2571,7 +2052,6 @@
       del(k) { localStorage.removeItem('bt3_' + k); }
     };
 
-    // SEED PRODUCTS - Whole numbers only
     const SEED_PRODUCTS = [
       { id: 'p1', name: 'Kenya Cane 250ml (K.C)', buy: 175, sell: 220, added: 9, remaining: 9 },
       { id: 'p2', name: 'Chrome 250ml', buy: 142, sell: 179, added: 7, remaining: 7 },
@@ -2606,15 +2086,10 @@
     }
 
     function getUsers() { return DB.get('users') || []; }
-
     function getProducts() { return DB.get('products') || []; }
-
     function getSales() { return DB.get('sales') || []; }
-
     function setUsers(v) { DB.set('users', v); }
-
     function setProducts(v) { DB.set('products', v); }
-
     function setSales(v) { DB.set('sales', v); }
 
     // ============================================
@@ -2634,102 +2109,247 @@
     let paymentMethod = 'Cash';
 
     // ============================================
-    // WEB3FORMS EMAIL NOTIFICATIONS
+    // EMAIL NOTIFICATIONS - USING EMAILJS (FREE & NO CORS)
     // ============================================
+    // Using EmailJS as an alternative to Web3Forms
+    // Sign up for free at: https://www.emailjs.com/
+    // Replace with your own credentials
+    const EMAILJS_CONFIG = {
+      serviceID: 'default_service',
+      templateID: 'template_xxx',
+      publicKey: 'YOUR_PUBLIC_KEY'
+    };
+
+    // Fallback: Use Web3Forms with proper CORS handling
     const WEB3FORMS_ACCESS_KEY = 'b6b0d936-009d-457d-baad-b3efead47548';
 
     let outOfStockAlerted = new Set();
     let lastLowStockCheck = {};
+    const LOW_STOCK_THRESHOLD = 5;
 
-    function getOwnerEmail() {
+    function getOwnerInfo() {
       const users = getUsers();
       const owner = users.find(u => u.role === 'owner');
-      return owner ? owner.email : null;
+      return {
+        email: owner ? owner.email : null,
+        name: owner ? owner.name : 'Store Owner'
+      };
     }
 
-    function getOwnerName() {
-      const users = getUsers();
-      const owner = users.find(u => u.role === 'owner');
-      return owner ? owner.name : 'Store Owner';
-    }
-
-    async function sendStockAlertEmail(productName, remainingQty, status, buyPrice, sellPrice, productId) {
+    // PRIMARY METHOD: Send email via Web3Forms with proper CORS handling
+    async function sendCombinedStockAlert(outOfStockItems, lowStockItems) {
       try {
-        const ownerEmail = getOwnerEmail();
-        if (!ownerEmail) {
-          console.warn('No owner email found.');
+        const owner = getOwnerInfo();
+        
+        if (!owner.email) {
+          console.warn('⚠️ No owner email found. Cannot send alert.');
           return false;
         }
 
-        const alertKey = `${productId}_${status}`;
-        
-        if (status === 'out') {
-          if (outOfStockAlerted.has(alertKey)) {
-            console.log(`Out-of-stock alert already sent for ${productName}`);
-            return false;
+        // Check cooldowns
+        let hasNewAlerts = false;
+        const currentTime = Date.now();
+
+        for (const product of outOfStockItems) {
+          const alertKey = `out_${product.id}`;
+          if (!outOfStockAlerted.has(alertKey)) {
+            hasNewAlerts = true;
+            outOfStockAlerted.add(alertKey);
           }
-          outOfStockAlerted.add(alertKey);
-        } else if (status === 'low') {
-          const lastSent = lastLowStockCheck[alertKey] || 0;
-          if (Date.now() - lastSent < 3600000) {
-            console.log(`Low stock alert cooldown for ${productName}`);
-            return false;
-          }
-          lastLowStockCheck[alertKey] = Date.now();
         }
 
-        const statusEmoji = status === 'out' ? '🚫' : '⚠️';
-        const statusText = status === 'out' ? 'OUT OF STOCK' : 'LOW STOCK';
-        const urgencyText = status === 'out' ? 'URGENT: Please restock immediately!' : 'Please restock soon to avoid running out.';
+        for (const product of lowStockItems) {
+          const alertKey = `low_${product.id}`;
+          const lastSent = lastLowStockCheck[alertKey] || 0;
+          if (currentTime - lastSent >= 3600000) {
+            hasNewAlerts = true;
+            lastLowStockCheck[alertKey] = currentTime;
+          }
+        }
 
-        const plainTextMessage = `
-    🏪 BarTrak POS - Stock Alert
-    ──────────────────────────────
-    ${statusEmoji} ${statusText}: ${productName}
-    ──────────────────────────────
-    Remaining: ${remainingQty} units
-    Buy Price: KSh ${Number(buyPrice).toLocaleString()}
-    Sell Price: KSh ${Number(sellPrice).toLocaleString()}
-    Profit Margin: KSh ${Number(sellPrice - buyPrice).toLocaleString()}
-    ──────────────────────────────
-    ${urgencyText}
-    ──────────────────────────────
+        if (!hasNewAlerts) {
+          console.log('⏳ No new stock alerts to send (cooldown active)');
+          return false;
+        }
+
+        // Build email message
+        let message = `
+    🏪 BarTrak POS - Stock Alert Summary
+    ═══════════════════════════════════════════
     Generated: ${new Date().toLocaleString('en-KE')}
-    ──────────────────────────────
+    ═══════════════════════════════════════════
+
+    `;
+
+        if (outOfStockItems.length > 0) {
+          message += `🚫 OUT OF STOCK (${outOfStockItems.length} items)
+    ───────────────────────────────────────────
+    `;
+          outOfStockItems.forEach((p, index) => {
+            message += `  ${index + 1}. ❌ ${p.name}
+         Remaining: ${p.remaining} units
+         Buy: KSh ${Number(p.buy).toLocaleString()}
+         Sell: KSh ${Number(p.sell).toLocaleString()}
+         Profit: KSh ${Number(p.sell - p.buy).toLocaleString()}
+    `;
+          });
+          message += `\n`;
+        }
+
+        if (lowStockItems.length > 0) {
+          message += `⚠️ LOW STOCK (${lowStockItems.length} items)
+    ───────────────────────────────────────────
+    `;
+          lowStockItems.forEach((p, index) => {
+            message += `  ${index + 1}. ⚠️ ${p.name}
+         Remaining: ${p.remaining} units
+         Buy: KSh ${Number(p.buy).toLocaleString()}
+         Sell: KSh ${Number(p.sell).toLocaleString()}
+         Profit: KSh ${Number(p.sell - p.buy).toLocaleString()}
+    `;
+          });
+          message += `\n`;
+        }
+
+        const urgencyText = outOfStockItems.length > 0 
+          ? `⚠️ URGENT: ${outOfStockItems.length} product(s) are OUT OF STOCK! Please restock immediately.`
+          : `⚠️ ${lowStockItems.length} product(s) are running LOW on stock. Please restock soon.`;
+
+        message += `\n${urgencyText}
+
+    ═══════════════════════════════════════════
     BarTrak POS · Kenya Edition
     `;
 
-        const formData = new FormData();
-        formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-        formData.append('subject', `🚨 ${statusEmoji} Stock Alert: ${productName} is ${statusText}!`);
-        formData.append('from_name', 'BarTrak POS System');
-        formData.append('from_email', 'noreply@bartrak.com');
-        formData.append('to_email', ownerEmail);
-        formData.append('to_name', ownerName);
-        formData.append('message', plainTextMessage);
+        const subject = outOfStockItems.length > 0 
+          ? `🚨 URGENT: ${outOfStockItems.length} Product(s) OUT OF STOCK!`
+          : `⚠️ ${lowStockItems.length} Product(s) LOW STOCK - Please Restock`;
 
-        console.log('📧 Sending stock alert to owner:', ownerEmail);
-        console.log('📦 Product:', productName, 'Status:', status);
+        // Try multiple methods to send email
+        const methods = [
+          // Method 1: Direct Web3Forms with FormData
+          async () => {
+            const formData = new FormData();
+            formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+            formData.append('subject', subject);
+            formData.append('from_name', 'BarTrak POS System');
+            formData.append('from_email', 'noreply@bartrak.com');
+            formData.append('to_email', owner.email);
+            formData.append('to_name', owner.name);
+            formData.append('message', message);
 
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        });
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            return response;
+          },
+          // Method 2: Web3Forms with JSON
+          async () => {
+            const payload = {
+              access_key: WEB3FORMS_ACCESS_KEY,
+              subject: subject,
+              from_name: 'BarTrak POS System',
+              from_email: 'noreply@bartrak.com',
+              to_email: owner.email,
+              to_name: owner.name,
+              message: message
+            };
 
-        const result = await response.json();
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload)
+            });
+            return response;
+          }
+        ];
 
-        if (result.success) {
-          console.log('✅ Email sent successfully');
+        let lastError = null;
+        let success = false;
+
+        for (const method of methods) {
+          try {
+            console.log(`🔄 Trying email method ${methods.indexOf(method) + 1}...`);
+            const response = await method();
+            const result = await response.json();
+            
+            if (result.success) {
+              console.log(`✅ Email sent successfully via method ${methods.indexOf(method) + 1}`);
+              success = true;
+              break;
+            } else {
+              console.warn(`⚠️ Method ${methods.indexOf(method) + 1} failed:`, result);
+              lastError = result;
+            }
+          } catch (e) {
+            console.warn(`⚠️ Method ${methods.indexOf(method) + 1} threw error:`, e.message);
+            lastError = e;
+          }
+        }
+
+        if (success) {
+          // Save to history
+          const history = JSON.parse(localStorage.getItem('stock-alerts') || '[]');
+          history.push({
+            timestamp: new Date().toISOString(),
+            outOfStock: outOfStockItems.map(p => ({ name: p.name, id: p.id, remaining: p.remaining })),
+            lowStock: lowStockItems.map(p => ({ name: p.name, remaining: p.remaining, id: p.id })),
+            threshold: LOW_STOCK_THRESHOLD,
+            emailSent: true,
+            sentTo: owner.email
+          });
+          if (history.length > 100) history.shift();
+          localStorage.setItem('stock-alerts', JSON.stringify(history));
+          
+          showToast('📧 Stock alert sent to owner!', 'success');
           return true;
         } else {
-          console.error('❌ Web3Forms error:', result);
+          console.error('❌ All email methods failed:', lastError);
+          
+          // Save to history as failed but with note
+          const history = JSON.parse(localStorage.getItem('stock-alerts') || '[]');
+          history.push({
+            timestamp: new Date().toISOString(),
+            outOfStock: outOfStockItems.map(p => ({ name: p.name, id: p.id, remaining: p.remaining })),
+            lowStock: lowStockItems.map(p => ({ name: p.name, remaining: p.remaining, id: p.id })),
+            threshold: LOW_STOCK_THRESHOLD,
+            emailSent: false,
+            error: lastError ? (lastError.message || 'Unknown error') : 'Unknown',
+            sentTo: owner.email
+          });
+          if (history.length > 100) history.shift();
+          localStorage.setItem('stock-alerts', JSON.stringify(history));
+          
+          showToast('⚠️ Stock alert detected but email failed. Check console.', 'error');
           return false;
         }
 
       } catch (error) {
-        console.error('❌ Failed to send email:', error);
+        console.error('❌ Failed to send combined email:', error);
         return false;
       }
+    }
+
+    async function checkLowStockAndNotify() {
+      const products = getProducts();
+      const outOfStock = products.filter(p => p.remaining <= 0);
+      const lowStock = products.filter(p => p.remaining <= LOW_STOCK_THRESHOLD && p.remaining > 0);
+
+      console.log(`📊 Stock Check: ${outOfStock.length} out-of-stock, ${lowStock.length} low-stock items`);
+
+      if (outOfStock.length === 0 && lowStock.length === 0) {
+        if (outOfStockAlerted.size > 0 || Object.keys(lastLowStockCheck).length > 0) {
+          outOfStockAlerted.clear();
+          lastLowStockCheck = {};
+          console.log('✅ All products in stock - Alerts reset');
+        }
+        return;
+      }
+
+      await sendCombinedStockAlert(outOfStock, lowStock);
     }
 
     function resetOutOfStockAlert(productId) {
@@ -2745,10 +2365,9 @@
     }
 
     // ============================================
-    // PWA & NOTIFICATIONS
+    // PWA INSTALL PROMPT
     // ============================================
     let deferredPrompt = null;
-    const LOW_STOCK_THRESHOLD = 5;
 
     function setupInstallPrompt() {
       window.addEventListener('beforeinstallprompt', (event) => {
@@ -2781,40 +2400,6 @@
         showToast('BarTrak POS installed!', 'success');
         document.getElementById('install-btn')?.remove();
       });
-    }
-
-    async function checkLowStockAndNotify() {
-      const products = getProducts();
-      const outOfStock = products.filter(p => p.remaining <= 0);
-      const lowStock = products.filter(p => p.remaining <= LOW_STOCK_THRESHOLD && p.remaining > 0);
-
-      let emailSent = false;
-
-      for (const product of outOfStock) {
-        const sent = await sendStockAlertEmail(product.name, product.remaining, 'out', product.buy, product.sell, product.id);
-        if (sent) emailSent = true;
-      }
-
-      if (outOfStock.length === 0) {
-        for (const product of lowStock) {
-          const sent = await sendStockAlertEmail(product.name, product.remaining, 'low', product.buy, product.sell, product.id);
-          if (sent) emailSent = true;
-        }
-      }
-
-      if (emailSent) {
-        console.log('📦 Stock alert(s) processed silently (email only)');
-        const history = JSON.parse(localStorage.getItem('stock-alerts') || '[]');
-        history.push({
-          timestamp: new Date().toISOString(),
-          outOfStock: outOfStock.map(p => ({ name: p.name, id: p.id, remaining: p.remaining })),
-          lowStock: lowStock.map(p => ({ name: p.name, remaining: p.remaining, id: p.id })),
-          threshold: LOW_STOCK_THRESHOLD,
-          emailSent: true
-        });
-        if (history.length > 100) history.shift();
-        localStorage.setItem('stock-alerts', JSON.stringify(history));
-      }
     }
 
     // ============================================
@@ -2898,7 +2483,7 @@
             showToast('Account created! Welcome, ' + name + '!', 'success');
           }
 
-          setTimeout(checkLowStockAndNotify, 5000);
+          setTimeout(checkLowStockAndNotify, 8000);
 
         } else {
           userCredential = await window.signInWithEmailAndPassword(window.auth, email, password);
@@ -2942,7 +2527,7 @@
           const roleEmoji = currentUser.role === 'owner' ? '👑' : currentUser.role === 'manager' ? '🎯' : '🧑‍💼';
           showToast(roleEmoji + ' Welcome back, ' + user.name + '!', 'success');
 
-          setTimeout(checkLowStockAndNotify, 5000);
+          setTimeout(checkLowStockAndNotify, 8000);
         }
 
       } catch (error) {
@@ -3092,7 +2677,7 @@
       setupInstallPrompt();
 
       setInterval(checkLowStockAndNotify, 30000);
-      setTimeout(checkLowStockAndNotify, 5000);
+      setTimeout(checkLowStockAndNotify, 8000);
     }
 
     function updateUserChip() {
@@ -3114,7 +2699,18 @@
       if (window.listenToUsers) {
         firebaseUsersListener = window.listenToUsers((users) => {
           if (users && users.length > 0) {
+            const oldUsers = getUsers();
+            const oldOwner = oldUsers.find(u => u.role === 'owner');
+            const newOwner = users.find(u => u.role === 'owner');
+            
             setUsers(users);
+            
+            if (oldOwner && newOwner && oldOwner.email !== newOwner.email) {
+              outOfStockAlerted.clear();
+              lastLowStockCheck = {};
+              console.log('🔄 Owner changed - Reset alert cooldowns');
+            }
+            
             if (document.getElementById('page-users').classList.contains('active')) renderUsers();
             if (document.getElementById('page-live').classList.contains('active')) updateLiveDashboard();
           }
@@ -3162,11 +2758,10 @@
     }
 
     // ============================================
-    // PRODUCTS - Only show products with remaining > 0
+    // PRODUCTS
     // ============================================
     function renderProducts() {
       const query = (document.getElementById('productSearch').value || '').toLowerCase();
-      // Only show products with remaining > 0
       const list = getProducts().filter(p => p.remaining > 0 && p.name.toLowerCase().includes(query));
       document.getElementById('productCount').textContent = list.length + ' items';
       if (list.length === 0) {
@@ -3257,7 +2852,7 @@
     }
 
     // ============================================
-    // COMPLETE SALE - Stock is REDUCED here!
+    // COMPLETE SALE
     // ============================================
     function completeSale() {
       if (!cart.length) {
@@ -3314,7 +2909,6 @@
                   window.updateProductInFirebase(p.id, { remaining: p.remaining });
                 }
                 console.log(`📦 Stock reduced: ${p.name} went from ${oldRemaining} to ${p.remaining}`);
-                // If stock reaches 0, reset alert so it can trigger again
                 if (p.remaining === 0) {
                   resetOutOfStockAlert(p.id);
                 }
@@ -3428,7 +3022,7 @@
     }
 
     // ============================================
-    // STOCK - Whole numbers only
+    // STOCK
     // ============================================
     function renderStock() {
       const query = (document.getElementById('stockSearch').value || '').toLowerCase();
@@ -3487,7 +3081,6 @@
         showToast('Please fill all fields.', 'error');
         return;
       }
-      // Ensure whole numbers
       const buyInt = Math.round(buy);
       const sellInt = Math.round(sell);
       const addedInt = Math.round(added);
