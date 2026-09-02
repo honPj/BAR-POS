@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
   
   <!-- PWA Meta Tags -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#f5a623">
+  <meta name="theme-color" content="#00b8a9">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -34,26 +34,9 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
     
     /* ========================================== */
-    /* CSS VARIABLES                              */
+    /* CSS VARIABLES — DARK (default) & LIGHT     */
     /* ========================================== */
     :root {
-      --bg-primary: #0d0f14;
-      --bg-secondary: #161a22;
-      --bg-card: #1e2330;
-      --bg-surface: #1a1f2b;
-      --border-color: #2a3045;
-      --border-light: #3a4055;
-      --accent: #f5a623;
-      --accent-hover: #e0950a;
-      --accent-dark: #c4850a;
-      --text-primary: #e8ecf4;
-      --text-secondary: #a0aab8;
-      --text-muted: #7a869a;
-      --red: #e74c3c;
-      --green: #2ecc71;
-      --yellow: #f39c12;
-      --blue: #3498db;
-      --purple: #9b59b6;
       --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', 'Courier New', monospace;
       --font-base: 16px;
@@ -62,7 +45,59 @@
       --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       --transition: all 0.2s ease;
     }
-    
+
+    /* Dark theme (default) */
+    [data-theme="dark"] {
+      --bg-primary: #0d0f14;
+      --bg-secondary: #161a22;
+      --bg-card: #1e2330;
+      --bg-surface: #1a1f2b;
+      --border-color: #2a3045;
+      --border-light: #3a4055;
+      /* Teal Accent */
+      --accent: #00b8a9;
+      --accent-hover: #00d4c0;
+      --accent-dark: #009688;
+      --text-primary: #e8ecf4;
+      --text-secondary: #a0aab8;
+      --text-muted: #7a869a;
+      --red: #e74c3c;
+      --green: #2ecc71;
+      --yellow: #f39c12;
+      --blue: #3498db;
+      --purple: #9b59b6;
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --input-bg: var(--bg-primary);
+      --modal-overlay: rgba(0, 0, 0, 0.65);
+      --toast-bg: var(--bg-card);
+    }
+
+    /* Light theme */
+    [data-theme="light"] {
+      --bg-primary: #f0f2f8;
+      --bg-secondary: #e4e8ef;
+      --bg-card: #ffffff;
+      --bg-surface: #f4f6fb;
+      --border-color: #c8cdd9;
+      --border-light: #b0b8c8;
+      /* Teal Accent (light) */
+      --accent: #00a396;
+      --accent-hover: #00b8a9;
+      --accent-dark: #00897b;
+      --text-primary: #1a1f2e;
+      --text-secondary: #3a4055;
+      --text-muted: #6a7288;
+      --red: #d63031;
+      --green: #00b894;
+      --yellow: #e17055;
+      --blue: #0984e3;
+      --purple: #6c5ce7;
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      --input-bg: #ffffff;
+      --modal-overlay: rgba(0, 0, 0, 0.35);
+      --toast-bg: #ffffff;
+    }
+
     /* ========================================== */
     /* RESET & BASE                               */
     /* ========================================== */
@@ -89,6 +124,7 @@
       overflow-x: hidden;
       font-size: 1rem;
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
     }
     
     /* ========================================== */
@@ -119,6 +155,7 @@
       min-height: 100vh;
       padding: 20px;
       background: var(--bg-primary);
+      position: relative;
     }
     
     .login-card {
@@ -128,7 +165,8 @@
       padding: 40px 36px 32px;
       width: 100%;
       max-width: 400px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--card-shadow);
+      transition: background 0.3s, border-color 0.3s;
     }
     
     .login-brand {
@@ -203,7 +241,7 @@
     
     .form-group .input-field {
       width: 100%;
-      background: var(--bg-primary);
+      background: var(--input-bg);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       padding: 12px 16px;
@@ -218,7 +256,7 @@
     
     .form-group .input-field:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15);
+      box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.25);
     }
     
     .form-group .input-field::placeholder {
@@ -234,46 +272,157 @@
       display: block;
     }
     
+    /* ========================================== */
+    /* BUTTONS — Teal, Pill, Glow, Lift, Ripple  */
+    /* ========================================== */
     .btn-primary {
       width: 100%;
       background: var(--accent);
       color: #000000;
       border: none;
-      border-radius: var(--radius-sm);
-      padding: 14px;
+      border-radius: 30px;
+      padding: 14px 24px;
       font-size: 15px;
       font-weight: 600;
       font-family: var(--font-family);
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(0, 184, 169, 0.3);
+      position: relative;
+      overflow: hidden;
       margin-top: 6px;
+      letter-spacing: 0.3px;
     }
-    
     .btn-primary:hover {
       background: var(--accent-hover);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 184, 169, 0.5);
     }
-    
     .btn-primary:active {
       transform: translateY(0);
     }
-    
-    .btn-primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 30px;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .btn-primary:hover::after {
+      opacity: 1;
     }
     
-    .auth-error {
-      color: var(--red);
+    .btn-primary-solid {
+      background: var(--accent);
+      color: #000000;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(0, 184, 169, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary-solid:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 184, 169, 0.5);
+    }
+    .btn-primary-solid::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 30px;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .btn-primary-solid:hover::after {
+      opacity: 1;
+    }
+    
+    .btn-ghost {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 8px 18px;
       font-size: 13px;
-      text-align: center;
-      min-height: 22px;
-      margin-top: 10px;
+      font-weight: 500;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 184, 169, 0.2);
+      background: var(--bg-surface);
     }
     
-    .auth-error.success {
-      color: var(--green);
+    .btn-danger {
+      background: var(--red);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(231, 76, 60, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(231, 76, 60, 0.4);
+      filter: brightness(1.1);
+    }
+    
+    .btn-success {
+      background: var(--green);
+      color: #000000;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(46, 204, 113, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(46, 204, 113, 0.4);
+      filter: brightness(1.05);
+    }
+    
+    .btn-sm {
+      padding: 6px 16px;
+      font-size: 11px;
+      border-radius: 30px;
     }
     
     .auth-toggle {
@@ -315,6 +464,85 @@
     }
     
     /* ========================================== */
+    /* THEME TOGGLE - TOGGLE SWITCH STYLE        */
+    /* ========================================== */
+    .theme-toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+      padding: 6px 16px 6px 12px;
+      box-shadow: 0 0 20px rgba(0, 184, 169, 0.25);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .theme-toggle-wrapper:hover {
+      border-color: var(--accent-hover);
+      box-shadow: 0 0 30px rgba(0, 184, 169, 0.4);
+      transform: scale(1.02);
+    }
+    
+    .theme-toggle-wrapper .toggle-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      letter-spacing: 0.3px;
+    }
+    
+    .theme-toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 28px;
+      background: var(--border-color);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    
+    .theme-toggle-switch .toggle-slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      background: #ffffff;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* Dark mode state */
+    [data-theme="dark"] .theme-toggle-switch {
+      background: var(--accent);
+    }
+    [data-theme="dark"] .theme-toggle-switch .toggle-slider {
+      left: 25px;
+      background: #ffffff;
+    }
+    
+    /* Light mode state */
+    [data-theme="light"] .theme-toggle-switch {
+      background: #c8cdd9;
+    }
+    [data-theme="light"] .theme-toggle-switch .toggle-slider {
+      left: 3px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    
+    /* Icon inside toggle */
+    .theme-toggle-wrapper .toggle-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+    
+    /* ========================================== */
     /* APP LAYOUT                                 */
     /* ========================================== */
     #app {
@@ -340,6 +568,7 @@
       z-index: 100;
       flex-wrap: wrap;
       gap: 8px;
+      transition: background 0.3s, border-color 0.3s;
     }
     
     .header-left {
@@ -389,6 +618,7 @@
       border-radius: 24px;
       padding: 3px 12px 3px 3px;
       font-size: 13px;
+      transition: background 0.3s, border-color 0.3s;
     }
     
     .user-chip .avatar {
@@ -414,7 +644,7 @@
     }
     
     .role-badge.owner {
-      background: rgba(245, 166, 35, 0.2);
+      background: rgba(0, 184, 169, 0.2);
       color: var(--accent);
       border: 1px solid var(--accent);
     }
@@ -430,64 +660,80 @@
     }
     
     /* ========================================== */
-    /* BUTTONS                                    */
+    /* BUTTONS (legacy overrides)                */
     /* ========================================== */
     .btn {
-      padding: 7px 14px;
-      border-radius: var(--radius-sm);
+      padding: 8px 18px;
+      border-radius: 30px;
       border: none;
       font-size: 13px;
       font-weight: 500;
       font-family: var(--font-family);
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
-    
     .btn:hover {
-      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 184, 169, 0.2);
     }
-    
     .btn-primary-solid {
       background: var(--accent);
       color: #000000;
+      box-shadow: 0 4px 14px rgba(0, 184, 169, 0.3);
     }
-    
+    .btn-primary-solid:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 8px 28px rgba(0, 184, 169, 0.5);
+    }
     .btn-ghost {
       background: var(--bg-card);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
     }
-    
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: var(--bg-surface);
+    }
     .btn-danger {
       background: var(--red);
       color: #ffffff;
+      box-shadow: 0 4px 14px rgba(231, 76, 60, 0.25);
     }
-    
+    .btn-danger:hover {
+      box-shadow: 0 8px 28px rgba(231, 76, 60, 0.4);
+      filter: brightness(1.1);
+    }
     .btn-success {
       background: var(--green);
       color: #000000;
+      box-shadow: 0 4px 14px rgba(46, 204, 113, 0.25);
     }
-    
+    .btn-success:hover {
+      box-shadow: 0 8px 28px rgba(46, 204, 113, 0.4);
+    }
     .btn-sm {
-      padding: 4px 10px;
+      padding: 6px 16px;
       font-size: 11px;
     }
     
     /* ========================================== */
-    /* NAVIGATION                                 */
+    /* NAVIGATION - ROUNDED TABS                 */
     /* ========================================== */
     .navbar {
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
-      padding: 0 14px;
+      padding: 8px 14px;
       display: flex;
       overflow-x: auto;
-      gap: 0;
+      gap: 6px;
       scrollbar-width: none;
       -ms-overflow-style: none;
+      transition: background 0.3s, border-color 0.3s;
+      flex-wrap: nowrap;
     }
     
     .navbar::-webkit-scrollbar {
@@ -495,29 +741,31 @@
     }
     
     .nav-tab {
-      padding: 11px 16px;
+      padding: 8px 18px;
       font-size: 13px;
       font-weight: 500;
-      border-bottom: 2px solid transparent;
+      border-radius: 30px;
       cursor: pointer;
       color: var(--text-muted);
       white-space: nowrap;
       transition: var(--transition);
-      background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
+      background: transparent;
+      border: 1px solid transparent;
       flex-shrink: 0;
       font-family: var(--font-family);
     }
     
     .nav-tab:hover {
       color: var(--text-primary);
+      background: var(--bg-surface);
+      border-color: var(--border-color);
     }
     
     .nav-tab.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
+      color: #000000;
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 4px 14px rgba(0, 184, 169, 0.3);
     }
     
     /* ========================================== */
@@ -547,6 +795,31 @@
     }
     
     /* ========================================== */
+    /* SEARCH INPUT - consistent across pages    */
+    /* ========================================== */
+    .search-input {
+      width: 100%;
+      max-width: 300px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: var(--font-family);
+      outline: none;
+      transition: var(--transition);
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.15);
+    }
+    .search-input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+    
+    /* ========================================== */
     /* STAT CARDS                                 */
     /* ========================================== */
     .stats-grid {
@@ -561,6 +834,7 @@
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       padding: 14px 16px;
+      transition: background 0.3s, border-color 0.3s;
     }
     
     .stat-label {
@@ -586,6 +860,7 @@
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       overflow: hidden;
+      transition: background 0.3s, border-color 0.3s;
     }
     
     .panel-header {
@@ -600,6 +875,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: background 0.3s, border-color 0.3s;
     }
     
     .panel-body {
@@ -623,7 +899,7 @@
     
     .product-search input {
       width: 100%;
-      background: var(--bg-primary);
+      background: var(--input-bg);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       padding: 10px 14px;
@@ -636,7 +912,7 @@
     
     .product-search input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+      box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.15);
     }
     
     .product-list {
@@ -655,7 +931,7 @@
     }
     
     .product-item:hover {
-      background: rgba(245, 166, 35, 0.05);
+      background: rgba(0, 184, 169, 0.06);
     }
     
     .product-name {
@@ -709,7 +985,7 @@
     .qty-btn {
       width: 26px;
       height: 26px;
-      border-radius: 4px;
+      border-radius: 30px;
       border: 1px solid var(--border-color);
       background: var(--bg-surface);
       color: var(--text-primary);
@@ -725,6 +1001,8 @@
     .qty-btn:hover {
       border-color: var(--accent);
       color: var(--accent);
+      background: var(--bg-card);
+      transform: scale(1.05);
     }
     
     .qty-number {
@@ -769,7 +1047,7 @@
     
     .payment-btn {
       padding: 8px;
-      border-radius: var(--radius-sm);
+      border-radius: 30px;
       border: 1px solid var(--border-color);
       background: var(--bg-surface);
       color: var(--text-muted);
@@ -785,7 +1063,9 @@
     .payment-btn.active {
       border-color: var(--accent);
       color: var(--accent);
-      background: rgba(245, 166, 35, 0.08);
+      background: rgba(0, 184, 169, 0.08);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 184, 169, 0.15);
     }
     
     /* ========================================== */
@@ -796,6 +1076,8 @@
       border-radius: var(--radius-sm);
       border: 1px solid var(--border-color);
       -webkit-overflow-scrolling: touch;
+      background: var(--bg-card);
+      transition: background 0.3s, border-color 0.3s;
     }
     
     table {
@@ -828,7 +1110,7 @@
     }
     
     tbody tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(0, 184, 169, 0.03);
     }
     
     /* ========================================== */
@@ -872,13 +1154,14 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
+      background: var(--modal-overlay);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       z-index: 200;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      transition: background 0.3s;
     }
     
     .overlay.open {
@@ -895,6 +1178,7 @@
       animation: modalIn 0.2s ease;
       max-height: 90vh;
       overflow-y: auto;
+      transition: background 0.3s, border-color 0.3s;
     }
     
     @keyframes modalIn {
@@ -963,7 +1247,7 @@
     
     .form-control input,
     .form-control select {
-      background: var(--bg-card);
+      background: var(--input-bg);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       padding: 8px 12px;
@@ -978,7 +1262,7 @@
     .form-control input:focus,
     .form-control select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+      box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.15);
     }
     
     .form-control select option {
@@ -1000,7 +1284,7 @@
     }
     
     .toast {
-      background: var(--bg-card);
+      background: var(--toast-bg);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       padding: 10px 18px;
@@ -1011,6 +1295,8 @@
       align-items: center;
       animation: toastIn 0.2s ease;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      color: var(--text-primary);
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
     }
     
     .toast-success {
@@ -1048,6 +1334,7 @@
       word-break: break-word;
       max-height: 60vh;
       overflow-y: auto;
+      transition: background 0.3s;
     }
     
     /* ========================================== */
@@ -1067,12 +1354,12 @@
     
     .employee-card:hover {
       border-color: var(--accent);
-      background: rgba(245, 166, 35, 0.05);
+      background: rgba(0, 184, 169, 0.05);
     }
     
     .employee-card.active {
       border-color: var(--accent);
-      background: rgba(245, 166, 35, 0.1);
+      background: rgba(0, 184, 169, 0.1);
     }
     
     .employee-card .status-dot {
@@ -1125,7 +1412,7 @@
       bottom: 80px;
       right: 16px;
       z-index: 999;
-      box-shadow: 0 4px 16px rgba(245, 166, 35, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 184, 169, 0.3);
     }
     
     /* ========================================== */
@@ -1167,7 +1454,11 @@
       }
       .nav-tab {
         font-size: 12px;
-        padding: 8px 12px;
+        padding: 6px 14px;
+      }
+      .navbar {
+        padding: 6px 10px;
+        gap: 4px;
       }
       .page {
         padding: 10px 12px 24px;
@@ -1230,6 +1521,33 @@
       .employee-card .emp-name {
         font-size: 13px;
       }
+      
+      .theme-toggle-wrapper {
+        padding: 4px 12px 4px 10px;
+        gap: 8px;
+      }
+      .theme-toggle-wrapper .toggle-label {
+        font-size: 11px;
+      }
+      .theme-toggle-switch {
+        width: 40px;
+        height: 22px;
+      }
+      .theme-toggle-switch .toggle-slider {
+        width: 18px;
+        height: 18px;
+        top: 2px;
+        left: 2px;
+      }
+      [data-theme="dark"] .theme-toggle-switch .toggle-slider {
+        left: 20px;
+      }
+      .theme-toggle-wrapper .toggle-icon {
+        font-size: 16px;
+      }
+      .search-input {
+        max-width: 100%;
+      }
     }
     
     @media (max-width: 480px) {
@@ -1273,7 +1591,11 @@
       
       .nav-tab {
         font-size: 11px;
-        padding: 6px 10px;
+        padding: 5px 12px;
+      }
+      .navbar {
+        padding: 4px 8px;
+        gap: 3px;
       }
       .page {
         padding: 8px 10px 20px;
@@ -1405,6 +1727,36 @@
         font-size: 11px;
         padding: 4px 10px;
       }
+      
+      .theme-toggle-wrapper {
+        padding: 3px 8px 3px 6px;
+        gap: 6px;
+        border-width: 1.5px;
+      }
+      .theme-toggle-wrapper .toggle-label {
+        font-size: 10px;
+      }
+      .theme-toggle-switch {
+        width: 34px;
+        height: 20px;
+      }
+      .theme-toggle-switch .toggle-slider {
+        width: 16px;
+        height: 16px;
+        top: 2px;
+        left: 2px;
+      }
+      [data-theme="dark"] .theme-toggle-switch .toggle-slider {
+        left: 16px;
+      }
+      .theme-toggle-wrapper .toggle-icon {
+        font-size: 14px;
+      }
+      .search-input {
+        max-width: 100%;
+        font-size: 13px;
+        padding: 8px 12px;
+      }
     }
     
     @media (max-height: 600px) and (orientation: landscape) {
@@ -1435,6 +1787,8 @@
   <!-- LOGIN SCREEN                               -->
   <!-- ========================================== -->
   <div id="loginScreen">
+    <!-- Theme toggle removed from login page -->
+    
     <div class="login-card">
       <div class="login-brand">
         <div class="logo">BT</div>
@@ -1472,7 +1826,7 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- APP (Profile screen removed)               -->
+  <!-- APP                                        -->
   <!-- ========================================== -->
   <div id="app">
     <!-- Header -->
@@ -1485,17 +1839,26 @@
         </div>
       </div>
       <div class="header-right">
+        <!-- Theme toggle - Toggle Switch Style -->
+        <div class="theme-toggle-wrapper" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle theme">
+          <span class="toggle-icon" id="themeIcon">🌙</span>
+          <span class="toggle-label" id="themeLabel"></span>
+          <div class="theme-toggle-switch">
+            <div class="toggle-slider"></div>
+          </div>
+        </div>
+        
         <div class="user-chip" id="userChip">
           <div class="avatar" id="userAvatar">👤</div>
           <span id="userName">User</span>
           <span style="color:var(--text-muted);font-size:11px;font-family:var(--font-mono);" id="userRole">EMPLOYEE</span>
         </div>
-        <button class="btn btn-ghost btn-sm" onclick="openProfileEdit()">Profile</button>
-        <button class="btn btn-ghost btn-sm" onclick="handleLogout()">Logout</button>
+        <button class="btn-ghost btn-sm" onclick="openProfileEdit()">Profile</button>
+        <button class="btn-ghost btn-sm" onclick="handleLogout()">Logout</button>
       </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation - Rounded tabs -->
     <div class="navbar" id="navbar">
       <button class="nav-tab active" data-page="pos" onclick="goToPage('pos', this)">Sell</button>
       <button class="nav-tab" data-page="stock" onclick="goToPage('stock', this)">Stock</button>
@@ -1523,7 +1886,7 @@
         <div class="panel">
           <div class="panel-header">
             <span>Cart</span>
-            <button class="btn btn-ghost btn-sm" onclick="clearCart()">Clear</button>
+            <button class="btn-ghost btn-sm" onclick="clearCart()">Clear</button>
           </div>
           <div class="cart-items" id="cartItems">
             <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">Tap a product to add</div>
@@ -1560,8 +1923,9 @@
         <div class="page-title">Stock</div>
         <div id="stockButtons"></div>
       </div>
+      <!-- Search input now uses the same styling as the Sell page -->
       <div style="margin-bottom:10px;">
-        <input type="text" id="stockSearch" placeholder="Search products..." style="max-width:300px;width:100%;" oninput="renderStock()" />
+        <input type="text" id="stockSearch" class="search-input" placeholder="Search products..." oninput="renderStock()" />
       </div>
       <div class="table-wrapper">
         <table>
@@ -1587,7 +1951,7 @@
     <div class="page" id="page-mysales">
       <div class="page-header">
         <div class="page-title">My Sales</div>
-        <button class="btn btn-ghost btn-sm" onclick="exportCSV(true)">Export CSV</button>
+        <button class="btn-ghost btn-sm" onclick="exportCSV(true)">Export CSV</button>
       </div>
       <div class="stats-grid" id="myStats"></div>
       <div class="table-wrapper">
@@ -1613,17 +1977,17 @@
       <div class="page-header">
         <div class="page-title">All Sales</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <select id="filterUser" onchange="renderAllSales()" style="padding:6px 12px;font-size:13px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-primary);">
+          <select id="filterUser" onchange="renderAllSales()" style="padding:6px 12px;font-size:13px;border-radius:30px;background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-primary);">
             <option value="">All Staff</option>
           </select>
-          <select id="filterPayment" onchange="renderAllSales()" style="padding:6px 12px;font-size:13px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-primary);">
+          <select id="filterPayment" onchange="renderAllSales()" style="padding:6px 12px;font-size:13px;border-radius:30px;background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-primary);">
             <option value="">All Payments</option>
             <option>Cash</option>
             <option>M-Pesa</option>
             <option>Bank</option>
             <option>Credit</option>
           </select>
-          <button class="btn btn-ghost btn-sm" onclick="exportCSV(false)">Export CSV</button>
+          <button class="btn-ghost btn-sm" onclick="exportCSV(false)">Export CSV</button>
         </div>
       </div>
       <div class="stats-grid" id="allStats"></div>
@@ -1650,7 +2014,7 @@
     <div class="page" id="page-users">
       <div class="page-header">
         <div class="page-title">Users</div>
-        <button class="btn btn-primary-solid btn-sm" onclick="openUserModal(null)">Add User</button>
+        <button class="btn-primary-solid btn-sm" onclick="openUserModal(null)">Add User</button>
       </div>
       <div class="table-wrapper">
         <table>
@@ -1705,7 +2069,7 @@
 
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;">
         <div>
-          <button class="btn btn-primary-solid btn-sm" onclick="filterEmployee('all')" id="filterAllBtn" style="border:2px solid var(--accent);">
+          <button class="btn-primary-solid btn-sm" onclick="filterEmployee('all')" id="filterAllBtn" style="border:2px solid var(--accent);">
             All Employees
           </button>
           <span id="filterLabel" style="color:var(--accent);font-size:13px;margin-left:8px;font-weight:500;">
@@ -1733,13 +2097,13 @@
       <div class="page-header">
         <div class="page-title">Analytics Dashboard</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <select id="analyticsPeriod" onchange="renderAnalytics()" style="padding:6px 12px;font-size:13px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-primary);">
+          <select id="analyticsPeriod" onchange="renderAnalytics()" style="padding:6px 12px;font-size:13px;border-radius:30px;background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-primary);">
             <option value="7">Last 7 Days</option>
             <option value="14">Last 14 Days</option>
             <option value="30" selected>Last 30 Days</option>
             <option value="90">Last 90 Days</option>
           </select>
-          <button class="btn btn-ghost btn-sm" onclick="refreshAnalytics()">Refresh</button>
+          <button class="btn-ghost btn-sm" onclick="refreshAnalytics()">Refresh</button>
         </div>
       </div>
 
@@ -1793,15 +2157,15 @@
     <div class="modal">
       <div class="modal-header">
         <h3>Receipt</h3>
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('receiptModal')">Close</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('receiptModal')">Close</button>
       </div>
       <div class="modal-body">
         <div class="receipt" id="receiptContent"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-ghost btn-sm" onclick="printReceipt()">Print</button>
-        <button class="btn btn-success btn-sm" onclick="downloadReceipt()">Download</button>
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('receiptModal')">Done</button>
+        <button class="btn-ghost btn-sm" onclick="printReceipt()">Print</button>
+        <button class="btn-success btn-sm" onclick="downloadReceipt()">Download</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('receiptModal')">Done</button>
       </div>
     </div>
   </div>
@@ -1811,7 +2175,7 @@
     <div class="modal">
       <div class="modal-header">
         <h3 id="userModalTitle">Add User</h3>
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('userModal')">Close</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('userModal')">Close</button>
       </div>
       <div class="modal-body">
         <div class="form-grid">
@@ -1834,8 +2198,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('userModal')">Cancel</button>
-        <button class="btn btn-primary-solid btn-sm" onclick="saveUser()">Save</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('userModal')">Cancel</button>
+        <button class="btn-primary-solid btn-sm" onclick="saveUser()">Save</button>
       </div>
     </div>
   </div>
@@ -1845,7 +2209,7 @@
     <div class="modal">
       <div class="modal-header">
         <h3 id="productModalTitle">Add Product</h3>
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('productModal')">Close</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('productModal')">Close</button>
       </div>
       <div class="modal-body">
         <div class="form-grid">
@@ -1855,25 +2219,25 @@
           </div>
           <div class="form-control">
             <label for="productBuyInput">Buying Price (KSh)</label>
-            <input type="number" id="productBuyInput" min="0" />
+            <input type="number" id="productBuyInput" min="0" step="1" />
           </div>
           <div class="form-control">
             <label for="productSellInput">Selling Price (KSh)</label>
-            <input type="number" id="productSellInput" min="0" />
+            <input type="number" id="productSellInput" min="0" step="1" />
           </div>
           <div class="form-control">
             <label for="productAddedInput">Added Stock</label>
-            <input type="number" id="productAddedInput" min="0" step="0.25" />
+            <input type="number" id="productAddedInput" min="0" step="1" />
           </div>
           <div class="form-control">
             <label for="productRemInput">Remaining Stock</label>
-            <input type="number" id="productRemInput" min="0" step="0.25" />
+            <input type="number" id="productRemInput" min="0" step="1" />
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('productModal')">Cancel</button>
-        <button class="btn btn-primary-solid btn-sm" onclick="saveProduct()">Save</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('productModal')">Cancel</button>
+        <button class="btn-primary-solid btn-sm" onclick="saveProduct()">Save</button>
       </div>
     </div>
   </div>
@@ -1883,7 +2247,7 @@
     <div class="modal">
       <div class="modal-header">
         <h3>Restock <span id="restockProductName" style="color:var(--accent);"></span></h3>
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('restockModal')">Close</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('restockModal')">Close</button>
       </div>
       <div class="modal-body">
         <div style="background:var(--bg-primary);border-radius:var(--radius-sm);padding:12px;margin-bottom:12px;font-family:var(--font-mono);font-size:14px;">
@@ -1898,12 +2262,12 @@
         </div>
         <div class="form-control">
           <label for="restockQty">Units to Add</label>
-          <input type="number" id="restockQty" min="0.25" step="0.25" placeholder="0" />
+          <input type="number" id="restockQty" min="1" step="1" placeholder="0" />
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('restockModal')">Cancel</button>
-        <button class="btn btn-primary-solid btn-sm" onclick="confirmRestock()">Add Stock</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('restockModal')">Cancel</button>
+        <button class="btn-primary-solid btn-sm" onclick="confirmRestock()">Add Stock</button>
       </div>
     </div>
   </div>
@@ -1913,7 +2277,7 @@
     <div class="modal">
       <div class="modal-header">
         <h3>Edit Profile</h3>
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('profileEditModal')">Close</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('profileEditModal')">Close</button>
       </div>
       <div class="modal-body">
         <div class="form-grid">
@@ -1924,8 +2288,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('profileEditModal')">Cancel</button>
-        <button class="btn btn-primary-solid btn-sm" onclick="saveProfileEdit()">Save</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('profileEditModal')">Cancel</button>
+        <button class="btn-primary-solid btn-sm" onclick="saveProfileEdit()">Save</button>
       </div>
     </div>
   </div>
@@ -1935,7 +2299,7 @@
     <div class="modal">
       <div class="modal-header">
         <h3>Change Role</h3>
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('roleModal')">Close</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('roleModal')">Close</button>
       </div>
       <div class="modal-body">
         <div class="form-grid">
@@ -1954,8 +2318,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-ghost btn-sm" onclick="closeModal('roleModal')">Cancel</button>
-        <button class="btn btn-primary-solid btn-sm" onclick="saveRoleChange()">Change Role</button>
+        <button class="btn-ghost btn-sm" onclick="closeModal('roleModal')">Cancel</button>
+        <button class="btn-primary-solid btn-sm" onclick="saveRoleChange()">Change Role</button>
       </div>
     </div>
   </div>
@@ -2171,6 +2535,34 @@
   <!-- ========================================== -->
   <script>
     // ============================================
+    // THEME TOGGLE - No notification
+    // ============================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      
+      // Update theme toggle button
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      
+      if (next === 'light') {
+        if (icon) icon.textContent = '☀️';
+        if (label) label.textContent = '';
+      } else {
+        if (icon) icon.textContent = '🌙';
+        if (label) label.textContent = '';
+      }
+      
+      // Re-render analytics charts with new theme colors
+      if (document.getElementById('page-analytics').classList.contains('active')) {
+        renderAnalytics();
+      }
+      // No toast notification for theme switching
+    }
+
+    // ============================================
     // STORAGE
     // ============================================
     const DB = {
@@ -2179,26 +2571,27 @@
       del(k) { localStorage.removeItem('bt3_' + k); }
     };
 
+    // SEED PRODUCTS - Whole numbers only
     const SEED_PRODUCTS = [
       { id: 'p1', name: 'Kenya Cane 250ml (K.C)', buy: 175, sell: 220, added: 9, remaining: 9 },
-      { id: 'p2', name: 'Chrome 250ml', buy: 142, sell: 179, added: 6.5, remaining: 6.5 },
+      { id: 'p2', name: 'Chrome 250ml', buy: 142, sell: 179, added: 7, remaining: 7 },
       { id: 'p3', name: 'Balozi Can', buy: 135, sell: 169, added: 3, remaining: 3 },
       { id: 'p4', name: 'White Cap Can (WC)', buy: 148, sell: 185, added: 1, remaining: 1 },
       { id: 'p5', name: 'Kenya Cane Mzinga 750ml', buy: 460, sell: 579, added: 1, remaining: 1 },
       { id: 'p6', name: 'V&A (VA)', buy: 205, sell: 255, added: 5, remaining: 5 },
-      { id: 'p7', name: 'Triple Ace', buy: 134, sell: 168, added: 4.75, remaining: 4.75 },
+      { id: 'p7', name: 'Triple Ace', buy: 134, sell: 168, added: 5, remaining: 5 },
       { id: 'p8', name: 'Kenya Cane 750ml', buy: 460, sell: 579, added: 1, remaining: 1 },
       { id: 'p9', name: 'County Mzinga', buy: 520, sell: 650, added: 1, remaining: 1 },
       { id: 'p10', name: 'Kane Mzinga', buy: 375, sell: 468, added: 1, remaining: 1 },
-      { id: 'p11', name: 'Kane 250ml', buy: 134, sell: 168, added: 2.25, remaining: 2.25 },
+      { id: 'p11', name: 'Kane 250ml', buy: 134, sell: 168, added: 3, remaining: 3 },
       { id: 'p12', name: 'Viceroy 350ml', buy: 480, sell: 600, added: 2, remaining: 2 },
       { id: 'p13', name: 'Viceroy 750ml', buy: 960, sell: 1200, added: 1, remaining: 1 },
       { id: 'p14', name: 'Captain Morgan (CM)', buy: 230, sell: 289, added: 1, remaining: 1 },
       { id: 'p15', name: 'Gilbeys 250ml', buy: 286, sell: 358, added: 5, remaining: 5 },
       { id: 'p16', name: 'Hunters 750ml', buy: 680, sell: 850, added: 1, remaining: 1 },
-      { id: 'p17', name: 'Tycoon', buy: 80, sell: 100, added: 12.75, remaining: 12.75 },
+      { id: 'p17', name: 'Tycoon', buy: 80, sell: 100, added: 13, remaining: 13 },
       { id: 'p18', name: 'Black Ice', buy: 128, sell: 160, added: 1, remaining: 1 },
-      { id: 'p19', name: 'Flying Horse', buy: 80, sell: 100, added: 3.5, remaining: 3.5 },
+      { id: 'p19', name: 'Flying Horse', buy: 80, sell: 100, added: 4, remaining: 4 },
       { id: 'p20', name: 'Red Bull', buy: 136, sell: 170, added: 1, remaining: 1 },
       { id: 'p21', name: 'Kibao', buy: 120, sell: 150, added: 5, remaining: 5 },
       { id: 'p22', name: 'Kenya Cane 350ml (K.C)', buy: 256, sell: 320, added: 3, remaining: 3 },
@@ -2227,7 +2620,7 @@
     // ============================================
     // AUTH & LOGIN
     // ============================================
-    const ROLE_COLORS = { owner: '#f5a623', manager: '#3498db', employee: '#2ecc71' };
+    const ROLE_COLORS = { owner: '#00b8a9', manager: '#3498db', employee: '#2ecc71' };
     const ROLE_ICONS = { owner: '👑', manager: '🎯', employee: '🧑‍💼' };
 
     let currentUser = null;
@@ -2294,7 +2687,7 @@
     ──────────────────────────────
     ${statusEmoji} ${statusText}: ${productName}
     ──────────────────────────────
-    Remaining: ${remainingQty.toFixed(2)} units
+    Remaining: ${remainingQty} units
     Buy Price: KSh ${Number(buyPrice).toLocaleString()}
     Sell Price: KSh ${Number(sellPrice).toLocaleString()}
     Profit Margin: KSh ${Number(sellPrice - buyPrice).toLocaleString()}
@@ -2363,7 +2756,7 @@
         deferredPrompt = event;
         if (!document.getElementById('install-btn')) {
           const installBtn = document.createElement('button');
-          installBtn.className = 'btn btn-primary-solid btn-sm';
+          installBtn.className = 'btn-primary-solid btn-sm';
           installBtn.id = 'install-btn';
           installBtn.textContent = '📱 Install App';
           installBtn.onclick = () => {
@@ -2635,7 +3028,7 @@
     }
 
     // ============================================
-    // PROFILE FUNCTIONS (No more setup screen)
+    // PROFILE FUNCTIONS
     // ============================================
     function openProfileEdit() {
       document.getElementById('profileNameInput').value = currentUser.name;
@@ -2663,7 +3056,7 @@
     }
 
     // ============================================
-    // APP LAUNCH (No profile screen)
+    // APP LAUNCH
     // ============================================
     function launchApp() {
       document.getElementById('loginScreen').style.display = 'none';
@@ -2679,7 +3072,7 @@
       document.getElementById('tabAnalytics').style.display = isMgr ? '' : 'none';
 
       document.getElementById('stockButtons').innerHTML = isMgr ?
-        '<button class="btn btn-primary-solid btn-sm" onclick="openProductModal(null)">Add Product</button>' : '';
+        '<button class="btn-primary-solid btn-sm" onclick="openProductModal(null)">Add Product</button>' : '';
       document.getElementById('stockActionsCol').textContent = isMgr ? 'Actions' : '';
 
       document.getElementById('filterUser').innerHTML = '<option value="">All Staff</option>' +
@@ -2769,28 +3162,37 @@
     }
 
     // ============================================
-    // PRODUCTS
+    // PRODUCTS - Only show products with remaining > 0
     // ============================================
     function renderProducts() {
       const query = (document.getElementById('productSearch').value || '').toLowerCase();
+      // Only show products with remaining > 0
       const list = getProducts().filter(p => p.remaining > 0 && p.name.toLowerCase().includes(query));
       document.getElementById('productCount').textContent = list.length + ' items';
-      document.getElementById('productList').innerHTML = list.length ?
-        list.map(p => `
-              <div class="product-item" onclick="addToCart('${p.id}')">
-                <div>
-                  <div class="product-name">${p.name}</div>
-                  <div class="product-stock">${p.remaining.toFixed(2)} left</div>
-                </div>
-                <div class="product-price">${formatCurrency(p.sell)}</div>
-              </div>
-            `).join('') :
-        '<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">No products found</div>';
+      if (list.length === 0) {
+        document.getElementById('productList').innerHTML = 
+          '<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">No products in stock</div>';
+        return;
+      }
+      document.getElementById('productList').innerHTML = list.map(p => `
+        <div class="product-item" onclick="addToCart('${p.id}')">
+          <div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-stock">${p.remaining} left</div>
+          </div>
+          <div class="product-price">${formatCurrency(p.sell)}</div>
+        </div>
+      `).join('');
     }
 
     function addToCart(productId) {
       const p = getProducts().find(x => x.id === productId);
       if (!p) return;
+      if (p.remaining <= 0) {
+        showToast('This product is out of stock!', 'error');
+        renderProducts();
+        return;
+      }
       const ex = cart.find(c => c.pid === productId);
       if (ex) {
         if (ex.qty >= p.remaining) {
@@ -2810,7 +3212,7 @@
       const p = getProducts().find(x => x.id === productId);
       if (!p) return;
       if (delta > 0 && ex.qty + delta > p.remaining) {
-        showToast('Not enough stock! Only ' + p.remaining.toFixed(2) + ' available.', 'error');
+        showToast('Not enough stock! Only ' + p.remaining + ' available.', 'error');
         return;
       }
       ex.qty += delta;
@@ -2871,7 +3273,7 @@
           return;
         }
         if (p.remaining < item.qty) {
-          showToast('Not enough stock for "' + item.name + '". Only ' + p.remaining.toFixed(2) + ' available.', 'error');
+          showToast('Not enough stock for "' + item.name + '". Only ' + p.remaining + ' available.', 'error');
           return;
         }
       }
@@ -2912,6 +3314,10 @@
                   window.updateProductInFirebase(p.id, { remaining: p.remaining });
                 }
                 console.log(`📦 Stock reduced: ${p.name} went from ${oldRemaining} to ${p.remaining}`);
+                // If stock reaches 0, reset alert so it can trigger again
+                if (p.remaining === 0) {
+                  resetOutOfStockAlert(p.id);
+                }
               }
             });
             setProducts(products);
@@ -2947,6 +3353,9 @@
           const oldRemaining = p.remaining;
           p.remaining = Math.max(0, p.remaining - c.qty);
           console.log(`📦 Stock reduced (local): ${p.name} went from ${oldRemaining} to ${p.remaining}`);
+          if (p.remaining === 0) {
+            resetOutOfStockAlert(p.id);
+          }
         }
       });
       setProducts(products);
@@ -3019,7 +3428,7 @@
     }
 
     // ============================================
-    // STOCK
+    // STOCK - Whole numbers only
     // ============================================
     function renderStock() {
       const query = (document.getElementById('stockSearch').value || '').toLowerCase();
@@ -3036,13 +3445,13 @@
               <td class="mono">${formatCurrency(p.buy)}</td>
               <td class="mono">${formatCurrency(p.sell)}</td>
               <td class="mono" style="color:var(--green);">+${formatCurrency(p.sell - p.buy)}</td>
-              <td class="mono">${p.added.toFixed(2)}</td>
-              <td class="mono">${p.remaining.toFixed(2)}</td>
+              <td class="mono">${p.added}</td>
+              <td class="mono">${p.remaining}</td>
               <td><span class="pill ${statusClass}">${statusText}</span></td>
               <td>${isMgr ? `<div style="display:flex;gap:4px;flex-wrap:wrap;">
-                <button class="btn btn-ghost btn-sm" onclick="openRestock('${p.id}')">Restock</button>
-                <button class="btn btn-ghost btn-sm" onclick="openProductModal('${p.id}')">Edit</button>
-                <button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">Delete</button>
+                <button class="btn-ghost btn-sm" onclick="openRestock('${p.id}')">Restock</button>
+                <button class="btn-ghost btn-sm" onclick="openProductModal('${p.id}')">Edit</button>
+                <button class="btn-danger btn-sm" onclick="deleteProduct('${p.id}')">Delete</button>
               </div>` : ''}</td>
             </tr>`;
         }).join('');
@@ -3078,16 +3487,22 @@
         showToast('Please fill all fields.', 'error');
         return;
       }
+      // Ensure whole numbers
+      const buyInt = Math.round(buy);
+      const sellInt = Math.round(sell);
+      const addedInt = Math.round(added);
+      const remInt = Math.round(rem);
+      
       let products = getProducts();
       if (editProductId) {
         const i = products.findIndex(x => x.id === editProductId);
-        if (products[i].remaining <= 0 && rem > 0) {
+        if (products[i].remaining <= 0 && remInt > 0) {
           resetOutOfStockAlert(editProductId);
         }
-        products[i] = { ...products[i], name, buy, sell, added, remaining: rem };
+        products[i] = { ...products[i], name, buy: buyInt, sell: sellInt, added: addedInt, remaining: remInt };
         showToast(name + ' updated.', 'success');
       } else {
-        products.push({ id: 'p' + Date.now(), name, buy, sell, added, remaining: rem });
+        products.push({ id: 'p' + Date.now(), name, buy: buyInt, sell: sellInt, added: addedInt, remaining: remInt });
         showToast(name + ' added.', 'info');
       }
       setProducts(products);
@@ -3119,7 +3534,7 @@
       const p = getProducts().find(x => x.id === id);
       restockId = id;
       document.getElementById('restockProductName').textContent = p.name;
-      document.getElementById('restockCurrent').textContent = p.remaining.toFixed(2) + ' units';
+      document.getElementById('restockCurrent').textContent = p.remaining + ' units';
       document.getElementById('restockBuyPrice').textContent = formatCurrency(p.buy);
       document.getElementById('restockQty').value = '';
       document.getElementById('restockModal').classList.add('open');
@@ -3131,13 +3546,14 @@
         showToast('Enter valid quantity.', 'error');
         return;
       }
+      const qtyInt = Math.round(qty);
       let products = getProducts();
       const i = products.findIndex(x => x.id === restockId);
-      if (products[i].remaining <= 0 && products[i].remaining + qty > 0) {
+      if (products[i].remaining <= 0 && products[i].remaining + qtyInt > 0) {
         resetOutOfStockAlert(restockId);
       }
-      products[i].remaining += qty;
-      products[i].added += qty;
+      products[i].remaining += qtyInt;
+      products[i].added += qtyInt;
       setProducts(products);
       if (window.updateProductInFirebase) {
         window.updateProductInFirebase(restockId, { remaining: products[i].remaining, added: products[i].added });
@@ -3145,7 +3561,7 @@
       closeModal('restockModal');
       renderStock();
       renderProducts();
-      showToast('Added ' + qty.toFixed(2) + ' units.', 'success');
+      showToast('Added ' + qtyInt + ' units.', 'success');
       setTimeout(checkLowStockAndNotify, 1000);
     }
 
@@ -3196,7 +3612,7 @@
             <td class="mono">${s.items ? s.items.length : 0}</td>
             <td class="mono" style="color:var(--green);">${formatCurrency(s.total)}</td>
             <td><span class="pill ${getPaymentPillClass(s.payment)}">${s.payment}</span></td>
-            <td><button class="btn btn-ghost btn-sm" onclick='showReceipt(${JSON.stringify(s)})'>View</button></td>
+            <td><button class="btn-ghost btn-sm" onclick='showReceipt(${JSON.stringify(s)})'>View</button></td>
           </tr>
         `).join('');
     }
@@ -3217,7 +3633,7 @@
             <td><strong>${u.name}</strong></td>
             <td>
               <span class="pill ${getRolePillClass(u.role)}">${u.role}</span>
-              ${isOwn && u.id !== currentUser.id ? `<button class="btn btn-ghost btn-sm" style="padding:2px 6px;font-size:10px;" onclick="openRoleModal('${u.id}')">Change Role</button>` : ''}
+              ${isOwn && u.id !== currentUser.id ? `<button class="btn-ghost btn-sm" style="padding:2px 6px;font-size:10px;" onclick="openRoleModal('${u.id}')">Change Role</button>` : ''}
             </td>
             <td style="font-size:12px;color:var(--text-muted);">${u.email || '-'}</td>
             <td class="mono">${us.length}</td>
@@ -3225,8 +3641,8 @@
             <td><span class="pill ${u.active ? 'pill-green' : 'pill-red'}">${u.active ? 'Active' : 'Inactive'}</span></td>
             <td>
               <div style="display:flex;gap:4px;flex-wrap:wrap;">
-                <button class="btn btn-ghost btn-sm" onclick="openUserModal('${u.id}')">Edit</button>
-                ${canDelete ? `<button class="btn btn-danger btn-sm" onclick="deleteUser('${u.id}')">Delete</button>` : ''}
+                <button class="btn-ghost btn-sm" onclick="openUserModal('${u.id}')">Edit</button>
+                ${canDelete ? `<button class="btn-danger btn-sm" onclick="deleteUser('${u.id}')">Delete</button>` : ''}
               </div>
             </td>
           </tr>`;
@@ -3661,6 +4077,10 @@
 
       if (salesTrendChartInstance) salesTrendChartInstance.destroy();
 
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const gridColor = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)';
+      const labelColor = isLight ? '#3d4454' : '#a0aab8';
+
       salesTrendChartInstance = new Chart(ctx, {
         type: 'line',
         data: {
@@ -3668,11 +4088,11 @@
           datasets: [{
             label: 'Daily Revenue',
             data: values,
-            borderColor: '#f5a623',
-            backgroundColor: 'rgba(245,166,35,0.1)',
+            borderColor: '#00b8a9',
+            backgroundColor: 'rgba(0,184,169,0.1)',
             fill: true,
             tension: 0.4,
-            pointBackgroundColor: '#f5a623',
+            pointBackgroundColor: '#00b8a9',
             pointRadius: 3
           }]
         },
@@ -3692,10 +4112,12 @@
           scales: {
             y: {
               beginAtZero: true,
-              ticks: { callback: function(value) { return 'KSh ' + value.toLocaleString(); } }
+              grid: { color: gridColor },
+              ticks: { callback: function(value) { return 'KSh ' + value.toLocaleString(); }, color: labelColor }
             },
             x: {
-              ticks: { maxRotation: 45, font: { size: 9 } }
+              grid: { color: gridColor },
+              ticks: { maxRotation: 45, font: { size: 9 }, color: labelColor }
             }
           }
         }
@@ -3712,6 +4134,9 @@
 
       if (revenueBreakdownChartInstance) revenueBreakdownChartInstance.destroy();
 
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const labelColor = isLight ? '#3d4454' : '#e8ecf4';
+
       revenueBreakdownChartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -3720,7 +4145,7 @@
             data: values,
             backgroundColor: colors,
             borderWidth: 2,
-            borderColor: '#1e2330'
+            borderColor: isLight ? '#ffffff' : '#1e2330'
           }]
         },
         options: {
@@ -3729,7 +4154,7 @@
           plugins: {
             legend: {
               position: 'bottom',
-              labels: { color: '#e8ecf4', font: { size: 10 } }
+              labels: { color: labelColor, font: { size: 10 } }
             },
             tooltip: {
               callbacks: {
@@ -4021,12 +4446,7 @@
     });
 
     initDB();
-    console.log('📦 BarTrak POS - Professional Edition');
-    console.log('👑 First user to register becomes Owner');
-    console.log('📧 Stock alerts sent SILENTLY to Owner email (CLEAN format)');
-    console.log('📦 Stock is REDUCED automatically when a sale is completed');
-    console.log('🚫 Out-of-stock alerts sent EVERY time an item goes out of stock');
-    console.log('📱 Fully responsive with clean UI');
+    
   </script>
 </body>
 </html>
